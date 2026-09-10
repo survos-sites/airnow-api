@@ -1,0 +1,7 @@
+{
+    "name": "airnow-api",
+    "description": "Cached AirNow observation and forecast gateway",
+    "healthchecks": {
+        "web": [{"type": "startup", "name": "API health", "path": "/health", "port": 80, "attempts": 5, "timeout": 5, "wait": 3}]
+    }
+}

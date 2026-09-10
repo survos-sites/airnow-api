@@ -1,0 +1,4 @@
+survos_airnow:
+    api_key: '%env(AIRNOW_API_KEY)%'
+    cache_ttl: 1 # The gateway's per-endpoint cache controls the public freshness window.
+    timeout: 10

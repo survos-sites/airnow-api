@@ -1,0 +1,14 @@
+parameters:
+    app.endpoints:
+        observation/current/ziplatlong:
+            method: currentObservationsByZip
+            zipParameter: zipcode
+            ttl: 3600
+        forecast/current:
+            method: currentForecastsByZip
+            zipParameter: zipCode
+            ttl: 86400
+    default_trusted_proxies: 'private_ranges'
+framework:
+    trusted_proxies: '%env(default:default_trusted_proxies:TRUSTED_PROXIES)%'
+    trusted_headers: ['x-forwarded-for', 'x-forwarded-host', 'x-forwarded-proto', 'x-forwarded-port']

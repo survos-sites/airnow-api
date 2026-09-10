@@ -1,0 +1,20 @@
+name: Test
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  php:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          extensions: pdo_sqlite, intl
+          coverage: none
+          tools: composer:v2
+      - run: composer install --prefer-dist --no-interaction
+      - run: composer validate --strict
+      - run: php bin/phpunit
+      - run: php bin/console lint:container
+      - run: php bin/console lint:yaml config

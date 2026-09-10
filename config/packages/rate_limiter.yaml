@@ -1,0 +1,10 @@
+framework:
+    rate_limiter:
+        clients:
+            policy: fixed_window
+            limit: '%env(int:AIRNOW_CLIENT_LIMIT)%'
+            interval: '1 minute'
+        upstream:
+            policy: fixed_window
+            limit: '%env(int:AIRNOW_UPSTREAM_LIMIT)%'
+            interval: '1 hour'
