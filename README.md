@@ -81,10 +81,13 @@ ssh dokku@fsn1.survos.com storage:mount airnow-api /var/lib/dokku/data/storage/a
 # Set AIRNOW_API_KEY securely via Dokku config; do not put it in git or this README.
 git remote add dokku dokku@fsn1.survos.com:airnow-api
 git push dokku main
-ssh dokku@fsn1.survos.com letsencrypt:enable airnow-api
 ```
 
-Ensure the hostname's DNS reaches that server before certificate issuance. Check `/health`
+The current hostname terminates HTTPS at Cloudflare and reaches Dokku over HTTP.
+Leave Dokku's origin HTTPS redirect disabled for this ingress: enabling the default
+Let's Encrypt redirect creates a loop. If moving to a direct origin or configuring
+Cloudflare to use origin HTTPS, configure and verify that path before enabling the
+origin redirect. No zone-wide Cloudflare settings were changed. Check `/health`
 and a real observations request over HTTPS after deployment; check that a second request
 has the same `meta.fetchedAt`. The API key stays on the server, never in response JSON.
 The desktop hosted-source adapter is a separate change in `survos-sites/airnow`.

@@ -18,3 +18,9 @@ The tutorial should not require a paid Apple Developer membership. Existing sign
 workflow is an optional future path; do not trigger it without credentials. Source/local
 builds suffice for now; any downloadable unsigned tutorial build must be labeled clearly.
 The Medium article remains planned, not published.
+
+Deployment verification: standard Symfony HttpClient receives HTTP 200 and three
+observations from the public HTTPS endpoint. Cloudflare terminates HTTPS; the origin
+uses HTTP. A tested origin certificate enabled Dokku's automatic redirect and caused
+a loop through the current ingress, so that new origin configuration was reverted.
+Both API calls and shared caching are verified; no Cloudflare-wide changes were made.
