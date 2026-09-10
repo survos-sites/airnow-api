@@ -76,7 +76,7 @@ The Docker image excludes local secrets, tests, local vendor files and writable 
 ```bash
 ssh dokku@fsn1.survos.com apps:create airnow-api
 ssh dokku@fsn1.survos.com domains:set airnow-api airnow-api.survos.com
-ssh dokku@fsn1.survos.com storage:ensure-directory airnow-api
+ssh dokku@fsn1.survos.com storage:create airnow-api /var/lib/dokku/data/storage/airnow-api
 ssh dokku@fsn1.survos.com storage:mount airnow-api /var/lib/dokku/data/storage/airnow-api:/app/var/data
 # Set AIRNOW_API_KEY securely via Dokku config; do not put it in git or this README.
 git remote add dokku dokku@fsn1.survos.com:airnow-api
