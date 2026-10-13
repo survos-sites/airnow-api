@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM dunglas/frankenphp:1-php8.5 AS base
+FROM dunglas/frankenphp:1.13.0-php8.5 AS base
 WORKDIR /app
 RUN install-php-extensions pdo_sqlite intl
 COPY Caddyfile /etc/caddy/Caddyfile
